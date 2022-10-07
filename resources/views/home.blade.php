@@ -10,5 +10,11 @@
     <h1>{{ $nome }}</h1>
     <p>{{ $idade }}</p>
     <h4>{{ $informacao ?? 'Em branco' }}</h4>
+
+    @if($idade > 60)
+    <h3>Idoso</h3>
+    @else
+    <h3>Adulto/Jovem</h3>
+    @endif
 </body>
 </html>
