@@ -12,15 +12,15 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Idade</th>
-                <th>Cidade</th>
+                <th>E-mail</th>
+                <th>Usuário</th>
             </tr>
         </thead>
         @foreach($users as $item)
         <tr>
-            <td>{{ $item['nome'] }}</td>
-            <td>{{ $item['idade'] }}</td>
-            <td>{{ $item['cidade'] }}</td>
+            <td>{{ $item->nome }}</td>
+            <td>{{ $item->email }}</td>
+            <td>{{ $item->user }}</td>
         </tr>
         @endforeach
     </table>

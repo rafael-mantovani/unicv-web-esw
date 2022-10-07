@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,5 +27,11 @@ class HomeController extends Controller
         ];
         
         return view('users', ['users' => $users]);
+    }
+
+    public function usersDatabase() {
+        $users = DB::table('usuarios')->get();
+
+        return view('users-db', ['users' => $users]);
     }
 }
