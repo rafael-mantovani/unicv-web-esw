@@ -9,6 +9,7 @@
   </head>
   <body class="p-5">
     <h1>Listagem de Produtos</h1>
+    <p><a href="/produtos/novo" class="btn btn-dark">Novo Produto</a></p>
     <table class="table">
     <thead>
         <tr>

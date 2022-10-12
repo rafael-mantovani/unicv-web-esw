@@ -30,7 +30,7 @@ class ProdutosController extends Controller
      */
     public function create()
     {
-        //
+        return view('produtos.novo');
     }
 
     /**
@@ -41,7 +41,7 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request->all());
     }
 
     /**

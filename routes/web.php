@@ -5,8 +5,9 @@ use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('produtos', [ProdutosController::class, 'index']);
+Route::get('produtos/novo', [ProdutosController::class, 'create']);
 Route::get('produtos/{id}', [ProdutosController::class, 'show']);
-
+Route::post('produtos/salvar', [ProdutosController::class, 'store']);
 
 Route::get('home', [HomeController::class, 'index']);
 Route::get('users', [HomeController::class, 'users']);
