@@ -52,7 +52,14 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        
+        $produto = [
+            'codigo' => $id,
+            'descricao' => 'Mouse Microsoft 2000',
+            'preco' => '125.90',
+            'quantidade' => 326
+        ];
+
+        return view('produtos.detalhes', $produto);
     }
 
     /**
