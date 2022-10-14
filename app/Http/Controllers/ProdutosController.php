@@ -46,7 +46,7 @@ class ProdutosController extends Controller
             'descricao'  => 'required|min:3|max:128',
             'preco'      => 'required|numeric|min:0',
             'quantidade' => 'required|numeric|min:0'
-        ]);
+        ], [], ['descricao' => 'descrição', 'preco' => 'preço']);
 
         if ($validation->fails()) {
             return redirect('produtos/novo')->withErrors($validation)->withInput();
@@ -81,7 +81,14 @@ class ProdutosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = [
+            'codigo' => $id,
+            'descricao' => 'Mouse Microsoft 2000',
+            'preco' => '125.90',
+            'quantidade' => 326
+        ];
+
+        return view('produtos.editar', $produto);
     }
 
     /**
@@ -93,7 +100,7 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**

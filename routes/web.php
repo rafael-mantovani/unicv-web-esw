@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('produtos', [ProdutosController::class, 'index']);
 Route::get('produtos/novo', [ProdutosController::class, 'create']);
+Route::get('produtos/editar/{id}', [ProdutosController::class, 'edit']);
 Route::get('produtos/{id}', [ProdutosController::class, 'show']);
+Route::post('produtos/gravar/{id}', [ProdutosController::class, 'update']);
 Route::post('produtos/salvar', [ProdutosController::class, 'store']);
 
 Route::get('home', [HomeController::class, 'index']);
