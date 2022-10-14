@@ -9,11 +9,18 @@
   </head>
   <body class="p-5">
     <h1>Novo Produto</h1>
+    @if ($errors->any())
+      <ul class="alert alert-danger">
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    @endif
     <form action="/produtos/salvar" method="post">
         @csrf
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="descricao" name="descricao">
+            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ old('descricao') }}">
         </div>
         <div class="mb-3">
             <label for="preco" class="form-label">Preço</label>

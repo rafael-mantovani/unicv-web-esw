@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
@@ -41,7 +42,17 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
+        $validation = Validator::make($request->all(), [
+            'descricao'  => 'required|min:3|max:128',
+            'preco'      => 'required|numeric|min:0',
+            'quantidade' => 'required|numeric|min:0'
+        ]);
+
+        if ($validation->fails()) {
+            return redirect('produtos/novo')->withErrors($validation)->withInput();
+        } else {
+            return redirect('/produtos');
+        }
     }
 
     /**
