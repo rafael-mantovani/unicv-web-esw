@@ -9,6 +9,9 @@
   </head>
   <body class="p-5">
     <h1>Listagem de Produtos</h1>
+    @if (session('mensagem'))
+      <div class="alert alert-success">{{ session('mensagem') }}</div>
+    @endif
     <p><a href="/produtos/novo" class="btn btn-dark">Novo Produto</a></p>
     <table class="table">
     <thead>
@@ -26,6 +29,7 @@
                 <td>
                   <a href="/produtos/{{ $produto['codigo'] }}" class="btn btn-info">Visualizar</a>
                   <a href="/produtos/editar/{{ $produto['codigo'] }}" class="btn btn-warning">Editar</a>
+                  <a href="/produtos/excluir/{{ $produto['codigo'] }}" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
         @endforeach

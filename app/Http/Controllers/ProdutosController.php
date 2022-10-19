@@ -100,7 +100,17 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $validation = Validator::make($request->all(), [
+            'descricao'  => 'required|min:3|max:128',
+            'preco'      => 'required|numeric|min:0',
+            'quantidade' => 'required|numeric|min:0'
+        ]);
+
+        if ($validation->fails()) {
+            return redirect('produtos/editar/'.$id)->withErrors($validation);
+        } else {
+            return redirect('produtos')->with('mensagem', 'Alterado com sucesso!');
+        }
     }
 
     /**
@@ -111,6 +121,7 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        return redirect('produtos')->with('mensagem', 'Excluído com sucesso!');
     }
 }
