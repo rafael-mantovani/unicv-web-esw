@@ -42,7 +42,12 @@ class ProdutosController extends Controller
         if ($validation->fails()) {
             return redirect('produtos/novo')->withErrors($validation)->withInput();
         } else {
-            return redirect('/produtos');
+            DB::table('produtos')->insert([
+                'descricao'  => $request->descricao,
+                'preco'      => $request->preco,
+                'quantidade' => $request->quantidade
+            ]);
+            return redirect('/produtos')->with('mensagem', 'Produto cadastrado.');
         }
     }
 
@@ -54,14 +59,9 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        $produto = [
-            'codigo' => $id,
-            'descricao' => 'Mouse Microsoft 2000',
-            'preco' => '125.90',
-            'quantidade' => 326
-        ];
+        $produto = DB::table('produtos')->where('id', $id)->first();
 
-        return view('produtos.detalhes', $produto);
+        return view('produtos.detalhes', ['produto' => $produto]);
     }
 
     /**
