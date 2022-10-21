@@ -16,19 +16,19 @@
       @endforeach
       </ul>
     @endif
-    <form action="/produtos/gravar/{{ $codigo }}" method="post">
+    <form action="/produtos/gravar/{{ $produto->id }}" method="post">
         @csrf
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $descricao }}">
+            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ $produto->descricao }}">
         </div>
         <div class="mb-3">
             <label for="preco" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="preco" name="preco" value="{{ $preco }}">
+            <input type="number" class="form-control" id="preco" name="preco" value="{{ $produto->preco }}">
         </div>
         <div class="mb-3">
             <label for="quantidade" class="form-label">Quantidade</label>
-            <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ $quantidade }}">
+            <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ $produto->quantidade }}">
         </div>
         <p><input type="submit" value="Salvar" class="btn btn-success"></p>
     </form>

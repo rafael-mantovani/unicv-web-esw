@@ -72,14 +72,9 @@ class ProdutosController extends Controller
      */
     public function edit($id)
     {
-        $produto = [
-            'codigo' => $id,
-            'descricao' => 'Mouse Microsoft 2000',
-            'preco' => '125.90',
-            'quantidade' => 326
-        ];
+        $produto = DB::table('produtos')->where('id', $id)->first();
 
-        return view('produtos.editar', $produto);
+        return view('produtos.editar', ['produto' => $produto]);
     }
 
     /**
@@ -100,6 +95,11 @@ class ProdutosController extends Controller
         if ($validation->fails()) {
             return redirect('produtos/editar/'.$id)->withErrors($validation);
         } else {
+            DB::table('produtos')->where('id', $id)->update([
+                'descricao'  => $request->descricao,
+                'preco'      => $request->preco,
+                'quantidade' => $request->quantidade
+            ]);
             return redirect('produtos')->with('mensagem', 'Alterado com sucesso!');
         }
     }
@@ -112,7 +112,7 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-
+        DB::table('produtos')->where('id', $id)->delete();
         return redirect('produtos')->with('mensagem', 'Excluído com sucesso!');
     }
 }
