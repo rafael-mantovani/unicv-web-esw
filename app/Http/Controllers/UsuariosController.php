@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Usuario;
 
 class UsuariosController extends Controller
 {
@@ -15,7 +16,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = DB::table('users')->get();
+        $usuarios = Usuario::all();
         return response()->json($usuarios, 200);
     }
 
@@ -42,7 +43,7 @@ class UsuariosController extends Controller
                 'password' => $request->password
             ];
 
-            DB::table('users')->insert($data);
+            Usuario::create($data);
             return response()->json(['mensagem' => 'Usuário cadastrado.'], 201);
         }
     }
@@ -55,7 +56,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        if (! $usuario = DB::table('users')->where('id', $id)->first()) {
+        if (! $usuario = Usuario::find($id)) {
             return response()->json(['mensagem' => 'Usuário não encontrado'], 404);
         }
 
